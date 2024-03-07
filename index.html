@@ -9,8 +9,8 @@
 
 <body>
 
-    <h2>What do you want to do today?</h2>
-    <p><button id="button">Click to find out</button></p>
+    <h2>Which dog are you? &#128525;</h2>
+    <p><button id="button">Click to spin!</button></p>
     
     <img id="image" src="images/img1.jpg" width="200", height="200">
 
@@ -21,18 +21,18 @@
 
         function start() {
             if (isRunning) {
-                document.getElementById("button").innerText = "Relase when ready";
+                document.getElementById("button").innerText = "Relase when ready!";
                 currentImageNumber = currentImageNumber + 1;
                 if (currentImageNumber > imagesNumber) {
                     currentImageNumber = 1;
                 }
                 var filenameElements = document.getElementById("image").src.split(".");
-                var filetype = filenameElements[elements.length-1];
+                var filetype = filenameElements[filenameElements.length-1];
                 document.getElementById("image").src = "images/img" + currentImageNumber + "." + filetype;
 
                 setTimeout(start, 50);
             } else {
-                document.getElementById("button").innerText = "Click to find out";
+                document.getElementById("button").innerText = "Click to spin!";
             }
 
         }
