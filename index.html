@@ -5,28 +5,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Which dog are you?</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>&#128021;</text></svg>">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>&#128021;</text></svg>">
 
-    <style> 
+    <style>
         .prevent-select {
-          -webkit-user-select: none; /* Safari */
-          -ms-user-select: none; /* IE 10 and IE 11 */
-          user-select: none; /* Standard syntax */
+            -webkit-user-select: none;
+            /* Safari */
+            -ms-user-select: none;
+            /* IE 10 and IE 11 */
+            user-select: none;
+            /* Standard syntax */
         }
-        </style>
+    </style>
 </head>
 
 <body>
 
     <h2>Which dog are you? &#128525;</h2>
     <p><button id="button" class="prevent-select">Click to spin!</button></p>
-    
-    <img id="image" src="images/img1.jpg" width="200", height="200">
+
+    <img id="image" src="images/img1.jpg" width="200" , height="200">
 
     <script>
         let isRunning = false;
         var imagesNumber = 20;
         var currentImageNumber = 1;
+        var imagesDirectory = "images/"
+        var imagesPrefix = "img";
+        var filetype = "jpg";
 
         function start() {
             if (isRunning) {
@@ -35,9 +42,8 @@
                 if (currentImageNumber > imagesNumber) {
                     currentImageNumber = 1;
                 }
-                var filenameElements = document.getElementById("image").src.split(".");
-                var filetype = filenameElements[filenameElements.length-1];
-                document.getElementById("image").src = "images/img" + currentImageNumber + "." + filetype;
+                //document.getElementById("image").src = imagesDirectory + imagesPrefix + currentImageNumber + "." + filetype;
+                document.getElementById("image").src = cachedImages[currentImageNumber].src;
 
                 setTimeout(start, 100);
             } else {
@@ -59,6 +65,40 @@
         document.getElementById("button").addEventListener("mouseup", toggle);
         document.getElementById('button').addEventListener('touchstart', toggle);
         document.getElementById('button').addEventListener('touchend', toggle);
+
+        function cacheImages(imageUrls) {
+            console.log("caching images")
+            // Create an array to store Image objects
+            const images = [];
+
+            // Loop through each image URL
+            imageUrls.forEach(url => {
+                // Create a new Image object
+                const img = new Image();
+
+                // Set the src attribute to preload the image
+                img.src = url;
+
+                // Push the Image object to the images array
+                images.push(img);
+            });
+
+            // Return the array of Image objects (optional)
+            return images;
+        }
+
+        function createImagesUrls() {
+            var imagesUrls = [];
+
+            for (var i = 1; i <= imagesNumber; i++ ) {
+                imagesUrls.push(imagesDirectory + imagesPrefix + i + "." + filetype);
+            }
+            console.log("images urls: " + imagesUrls)
+            return imagesUrls;
+        }
+
+        // Call the function to cache the images
+        const cachedImages = cacheImages(createImagesUrls());
     </script>
 
 </body>
