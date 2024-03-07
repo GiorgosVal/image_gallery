@@ -38,12 +38,14 @@
         function start() {
             if (isRunning) {
                 document.getElementById("button").innerText = "Relase when ready!";
+                console.log("current image " + currentImageNumber);
                 currentImageNumber = currentImageNumber + 1;
                 if (currentImageNumber > imagesNumber) {
                     currentImageNumber = 1;
                 }
+                console.log("will load image " + currentImageNumber);
                 //document.getElementById("image").src = imagesDirectory + imagesPrefix + currentImageNumber + "." + filetype;
-                document.getElementById("image").src = cachedImages[currentImageNumber].src;
+                document.getElementById("image").src = cachedImages[currentImageNumber - 1].src;
 
                 setTimeout(start, 100);
             } else {
