@@ -18,11 +18,14 @@ window.addEventListener('DOMContentLoaded', async () => {
         const imagesDirectory = 'images/';
         const response = await fetch(imagesDirectory);
         console.log(response);
-        console.log();
-        console.log(response.text());
+        console.log("///1");
         const htmlContent = await response.text();
+        console.log("///2");
+        console.log(htmlContent);
         const parser = new DOMParser();
         const htmlDocument = parser.parseFromString(htmlContent, 'text/html');
+        console.log("///3");
+        console.log(htmlDocument);
         const fileLinks = Array.from(htmlDocument.querySelectorAll('a'))
             .map(link => link.getAttribute('href'))
             .filter(href => href !== '../'); // Filter out parent directory link
