@@ -17,6 +17,9 @@ window.addEventListener('DOMContentLoaded', async () => {
     try {
         const imagesDirectory = 'images/';
         const response = await fetch(imagesDirectory);
+        console.log(response);
+        console.log();
+        console.log(response.text());
         const htmlContent = await response.text();
         const parser = new DOMParser();
         const htmlDocument = parser.parseFromString(htmlContent, 'text/html');
