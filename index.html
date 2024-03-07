@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Reader</title>
+</head>
+
+<body>
+
+    <h2>What do you want to do today?</h2>
+    <p><button id="button">Click to find out</button></p>
+    
+    <img id="image" src="images/img1.jpg" width="200", height="200">
+
+    <script>
+        let isRunning = false;
+        var imagesNumber = 2;
+        var currentImageNumber = 1;
+
+        function start() {
+            if (isRunning) {
+                document.getElementById("button").innerText = "Relase when ready";
+                currentImageNumber = currentImageNumber + 1;
+                if (currentImageNumber > imagesNumber) {
+                    currentImageNumber = 1;
+                }
+                var filetype = document.getElementById("image").src.split(".")[1];
+                document.getElementById("image").src = "images/img" + currentImageNumber + "." + filetype;
+
+                setTimeout(start, 50);
+            } else {
+                document.getElementById("button").innerText = "Click to find out";
+            }
+
+        }
+
+        function toggle() {
+            if (isRunning) {
+                isRunning = false;
+            } else {
+                isRunning = true;
+                start();
+            }
+        }
+
+        document.getElementById("button").addEventListener("mousedown", toggle);
+        document.getElementById("button").addEventListener("mouseup", toggle);
+    </script>
+
+</body>
+
+</html>
