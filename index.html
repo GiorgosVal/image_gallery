@@ -8,6 +8,9 @@
     <link rel="icon"
         href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>&#128021;</text></svg>">
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
     <style>
         .prevent-select {
             -webkit-user-select: none;
@@ -22,11 +25,14 @@
 
 <body>
 
-    <h2>Which dog are you? &#128525;</h2>
-    <p><button id="button" class="prevent-select">Click to spin!</button></p>
+    <div class="text-center">
+        <h2>Which dog are you? &#128525;</h2>
+    </div>
+    <img id="image" src="images/img1.jpg" class="rounded mx-auto d-block" width="400" , height="400">
 
-    <img id="image" src="images/img1.jpg" width="200" , height="200">
-
+    <div class="text-center">
+        <button id="button" type="button" class="btn btn-primary btn-lg prevent-select">Click to spin!</button>
+    </div>
     <script>
         let isRunning = false;
         var imagesNumber = 20;
@@ -92,7 +98,7 @@
         function createImagesUrls() {
             var imagesUrls = [];
 
-            for (var i = 1; i <= imagesNumber; i++ ) {
+            for (var i = 1; i <= imagesNumber; i++) {
                 imagesUrls.push(imagesDirectory + imagesPrefix + i + "." + filetype);
             }
             console.log("images urls: " + imagesUrls)
@@ -102,6 +108,16 @@
         // Call the function to cache the images
         const cachedImages = cacheImages(createImagesUrls());
     </script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 
 </body>
 
