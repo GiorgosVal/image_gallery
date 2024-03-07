@@ -44,12 +44,10 @@
         function start() {
             if (isRunning) {
                 document.getElementById("button").innerText = "Relase when ready!";
-                console.log("current image " + currentImageNumber);
                 currentImageNumber = currentImageNumber + 1;
                 if (currentImageNumber > imagesNumber) {
                     currentImageNumber = 1;
                 }
-                console.log("will load image " + currentImageNumber);
                 //document.getElementById("image").src = imagesDirectory + imagesPrefix + currentImageNumber + "." + filetype;
                 document.getElementById("image").src = cachedImages[currentImageNumber - 1].src;
 
@@ -75,7 +73,6 @@
         document.getElementById('button').addEventListener('touchend', toggle);
 
         function cacheImages(imageUrls) {
-            console.log("caching images")
             // Create an array to store Image objects
             const images = [];
 
@@ -101,7 +98,6 @@
             for (var i = 1; i <= imagesNumber; i++) {
                 imagesUrls.push(imagesDirectory + imagesPrefix + i + "." + filetype);
             }
-            console.log("images urls: " + imagesUrls)
             return imagesUrls;
         }
 
